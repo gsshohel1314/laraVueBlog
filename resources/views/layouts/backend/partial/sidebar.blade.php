@@ -15,12 +15,12 @@
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                 <li class="nav-item has-treeview menu-open">
-                    <a href="{{ route('backend.dashboard') }}" class="nav-link active">
+                    <router-link to="/backend/dashboard" class="nav-link active">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
                         </p>
-                    </a>
+                    </router-link>
                 </li>
 
                 <li class="nav-item has-treeview">
@@ -43,10 +43,17 @@
 
                 <li class="nav-header">LABELS</li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <router-link to="/backend/category" class="nav-link">
                         <i class="nav-icon far fa-circle text-danger"></i>
-                        <p class="text">Important</p>
-                    </a>
+                        <p class="text">Category</p>
+                    </router-link>
+                </li>
+
+                <li class="nav-item">
+                    <router-link to="/backend/post" class="nav-link">
+                        <i class="nav-icon far fa-circle text-danger"></i>
+                        <p class="text">Post</p>
+                    </router-link>
                 </li>
 
             </ul>
