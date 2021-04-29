@@ -8,12 +8,12 @@ import CreateComponent from './components/backend/category/CreateComponent';
 import PostComponent from './components/backend/post/PostComponent';
 
 export const routes = [
-    { path: '/backend/dashboard', component: DashboardComponent },
+    { path: '/dashboard', component: DashboardComponent },
 
     // category route
-    { path: '/backend/category', component: IndexComponent },
-    { path: '/backend/category-create', component: CreateComponent },
+    { path: '/category', component: IndexComponent },
+    { path: '/category/create', component: CreateComponent },
 
     // post route
-    { path: '/backend/post', component: PostComponent },
+    { path: '/post', component: PostComponent },
 ]

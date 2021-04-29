@@ -2,8 +2,17 @@ require('./bootstrap');
 
 import Vue from 'vue';
 
+// vuex
+import Vuex from 'vuex'
+Vue.use(Vuex)
+
+import vueStore from './vuex'
+const store = new Vuex.Store(
+    vueStore
+)
+
 // vform
-import {Form, HasError, AlertError} from 'vform'
+import { Form, HasError, AlertError } from 'vform'
 
 Vue.component(HasError.name, HasError)
 Vue.component(AlertError.name, AlertError)
@@ -12,9 +21,9 @@ Vue.component(AlertError.name, AlertError)
 import Snotify, { SnotifyPosition } from 'vue-snotify'
 
 const snotifyOptions = {
-  toast: {
-    position: SnotifyPosition.rightTop
-  }
+    toast: {
+        position: SnotifyPosition.rightTop
+    }
 }
 
 Vue.use(Snotify, snotifyOptions)
@@ -29,14 +38,15 @@ window.Form = Form
 Vue.component('app-component', require('./components/layouts/backend/AppComponent.vue').default);
 
 // routes
-import {routes} from './routes';
+import { routes } from './routes';
 
 const router = new VueRouter({
     routes,
-    mode: 'history',
+    mode: 'hash',
 });
 
 const app = new Vue({
     el: '#app',
     router,
+    store,
 });

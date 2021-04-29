@@ -6,7 +6,7 @@
             </div>
             <div class="card-tools" style="position: absolute; right: 2rem; top: 4.3rem">
                 <button class="btn btn-primary"><i class="fas fa-plus-circle"></i>
-                    <router-link to="/backend/category-create" style="color:#fff;">Create</router-link>
+                    <router-link to="/category/create" style="color:#fff;">Create</router-link>
                 </button>
             </div>
         </div>
@@ -31,11 +31,9 @@
                                     </thead>
 
                                     <tbody>
-                                        <tr>
-                                            <td scope="row">1</td>
-                                            <td>Internet
-                                            Explorer 4.0
-                                            </td>
+                                        <tr v-for="(category, index) in getAllCategory" :key="category.id">
+                                            <td scope="row"> {{ index + 1 }} </td>
+                                            <td>{{ category.name }}</td>
                                             <td class="text-center">
                                                 <button type="button" class="btn btn-info btn-sm">
                                                     <i class="fas fa-eye"></i> View
@@ -47,20 +45,6 @@
                                                     <i class="fas fa-trash-alt"></i> Delete
                                                 </button>
                                             </td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Internet
-                                            Explorer 4.0
-                                            </td>
-                                            <td>X</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Internet
-                                            Explorer 4.0
-                                            </td>
-                                            <td>X</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -76,7 +60,17 @@
 <script>
     export default {
         mounted() {
-            console.log('Component mounted.')
+            this.$store.dispatch('allCategory')
+        },
+
+        computed: {
+            getAllCategory(){
+                return this.$store.getters.getCategory
+            },
+        },
+
+        methods: {
+
         }
     }
 </script>

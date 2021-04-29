@@ -10,7 +10,7 @@
                 </button>
 
                 <button class="btn btn-danger"><i class="fas fa-arrow-circle-left"></i>
-                    <router-link to="/backend/category" style="color:#fff;">Back To List</router-link>
+                    <router-link to="/category" style="color:#fff;">Back To List</router-link>
                 </button>
             </div>
         </div>

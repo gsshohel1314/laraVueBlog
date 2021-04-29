@@ -17,7 +17,7 @@
             <a class="nav-link" data-toggle="dropdown" href="#">
                 <div class="row">
                     <div>
-                        <img width="42" style="margin-top: -9px; margin-right: 10px;" src="dist/img/user2-160x160.jpg"
+                        <img width="42" style="margin-top: -9px; margin-right: 10px;" src="{{ asset('backend/dist/img/avatar5.png') }}"
                             class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div>
