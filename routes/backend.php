@@ -11,5 +11,9 @@ Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth'
     // Category
     Route::get('category', [CategoryController::class, 'index']);
     Route::post('category/create',[CategoryController::class,'create']);
+    Route::get('category/edit/{id}', [CategoryController::class, 'edit']);
+    Route::post('category/update/{id}', [CategoryController::class, 'update']);
+    Route::get('category/show/{id}', [CategoryController::class, 'show']);
+    Route::get('category/{id}', [CategoryController::class, 'delete']);
 });
 

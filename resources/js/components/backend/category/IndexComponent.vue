@@ -26,6 +26,7 @@
                                         <tr>
                                             <th scope="col">#</th>
                                             <th scope="col">Name</th>
+                                            <th scope="col">Date</th>
                                             <th scope="col" class="text-center">Action</th>
                                         </tr>
                                     </thead>
@@ -34,14 +35,18 @@
                                         <tr v-for="(category, index) in getAllCategory" :key="category.id">
                                             <td scope="row"> {{ index + 1 }} </td>
                                             <td>{{ category.name }}</td>
+                                            <td>{{ category.created_at | timeFormate }}</td>
+
                                             <td class="text-center">
-                                                <button type="button" class="btn btn-info btn-sm">
+                                                <router-link :to="`/category/show/${category.id}`" type="button" class="btn btn-info btn-sm">
                                                     <i class="fas fa-eye"></i> View
-                                                </button>
-                                                <button type="button" class="btn btn-primary btn-sm">
+                                                </router-link>
+
+                                                <router-link :to="`/category/edit/${category.id}`" type="button" class="btn btn-primary btn-sm" @click="edit(category.id)">
                                                     <i class="fas fa-edit"></i> Edit
-                                                </button>
-                                                <button type="button" class="btn btn-danger btn-sm">
+                                                </router-link>
+
+                                                <button type="button" class="btn btn-danger btn-sm" @click="destroy(category.id)">
                                                     <i class="fas fa-trash-alt"></i> Delete
                                                 </button>
                                             </td>
@@ -54,6 +59,8 @@
                 </div>
             </div>
         </section>
+        <!-- snotify -->
+        <vue-snotify></vue-snotify>
     </div>
 </template>
 
@@ -70,7 +77,46 @@
         },
 
         methods: {
+            destroy(id){
+                this.$snotify.clear()
+                this.$snotify.confirm(
+                    "You will not be able to recover this data!",
+                    "Are you sure?",
+                    {
+                        showProgressBar: false,
+                        closeOnClick: false,
+                        pauseOnHover: true,
+                        buttons: [
+                            {
+                            text: "Yes",
+                            action: toast => {
+                                this.$snotify.remove(toast.id);
 
+                                axios.get('/backend/category/'+id)
+                                .then(response => {
+                                    this.$store.dispatch('allCategory')
+                                    this.$snotify.success('Category Deleted', 'Success')
+                                })
+
+                                .catch(e => {
+                                    console.log(e)
+                                })
+                            },
+                            bold: true
+                            },
+
+                            {
+                            text: "No",
+                            action: toast => {
+                                this.$snotify.remove(toast.id);
+                            },
+                            bold: true
+                            }
+
+                        ]
+                    }
+                );
+            }
         }
     }
 </script>

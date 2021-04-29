@@ -2,7 +2,7 @@
     <div class="container">
         <div class="content-header" style="background: #E7EAED; margin-bottom: 20px;">
             <div class="container-fluid">
-                <h1 class="m-0 text-dark"> <i class="fas fa-tachometer-alt"></i> Category Create</h1>
+                <h1 class="m-0 text-dark"> <i class="fas fa-tachometer-alt"></i> Category Edit</h1>
             </div>
             <div class="card-tools" style="position: absolute; right: 2rem; top: 4.3rem">
                 <button class="btn btn-danger"><i class="fas fa-arrow-circle-left"></i>
@@ -16,7 +16,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card card-primary">
-                            <form @submit.prevent="store()" @keydown="form.onKeydown($event)">
+                            <form @submit.prevent="update()" @keydown="form.onKeydown($event)">
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label>Name</label>
@@ -33,7 +33,7 @@
                                 </div>
 
                                 <div class="card-footer">
-                                    <button :disabled="form.busy" type="submit" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Create</button>
+                                    <button :disabled="form.busy" type="submit" class="btn btn-primary"><i class="fas fa-arrow-circle-up"></i> Update</button>
                                 </div>
                             </form>
                         </div>
@@ -48,6 +48,16 @@
 
 <script>
     export default {
+        mounted() {
+            axios.get(`/backend/category/edit/${this.$route.params.id}`)
+            .then(response => {
+                this.form.fill(response.data.category)
+            })
+            .catch(e => {
+                console.log(e)
+            })
+        },
+
         data() {
             return {
                 form: new Form({
@@ -58,18 +68,16 @@
         },
 
         methods: {
-            store(){
+            update(){
                 this.form.busy = true
-                this.form.post('/backend/category/create')
+                this.form.post(`/backend/category/update/${this.$route.params.id}`)
 
                 .then(response => {
-                    // this.$router.push('/backend/category')
                     if(this.form.successful){
-                        this.$snotify.success('Category Added', 'Success')
+                        this.$snotify.success('Category Updated', 'Success')
                     }else{
                         this.$snotify.error('Something went wrong try again later', 'Error')
                     }
-                    this.form.reset()
                 })
                 .catch(e => {
                     console.log(e)
@@ -80,4 +88,5 @@
 
     }
 </script>
+
 

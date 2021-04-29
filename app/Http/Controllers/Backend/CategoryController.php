@@ -28,4 +28,35 @@ class CategoryController extends Controller
             'description' => $request->description,
         ]);
     }
+
+    public function edit($id){
+        $category = Category::findOrFail($id);
+        return response()->json([
+            'category' => $category,
+        ], 200);
+    }
+
+    public function update(Request $request ,$id){
+        $this->validate($request,[
+            'name'=>'required|string',
+            'description'=>'nullable|string'
+        ]);
+        $category = Category::findOrFail($id);
+        $category->update([
+            'name' => $request->name,
+            'description' => $request->description,
+        ]);
+    }
+
+    public function show($id){
+        $category = Category::findOrFail($id);
+        return response()->json([
+            'category' => $category,
+        ], 200);
+    }
+
+    public function delete($id){
+        $category = Category::findOrFail($id);
+        $category->delete();
+    }
 }
