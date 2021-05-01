@@ -11,36 +11,32 @@
             </div>
         </div>
 
-        <section class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card card-primary">
-                            <form @submit.prevent="update()" @keydown="form.onKeydown($event)">
-                                <div class="card-body">
-                                    <div class="form-group">
-                                        <label>Name</label>
-                                        <input v-model="form.name" type="text" name="name"
-                                        class="form-control" :class="{ 'is-invalid': form.errors.has('name') }">
-                                        <has-error :form="form" field="name"></has-error>
-                                    </div>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card card-primary">
+                    <form @submit.prevent="update()" @keydown="form.onKeydown($event)">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input v-model="form.name" type="text" name="name"
+                                class="form-control" :class="{ 'is-invalid': form.errors.has('name') }">
+                                <has-error :form="form" field="name"></has-error>
+                            </div>
 
-                                    <div class="form-group">
-                                        <label>Description</label>
-                                        <textarea v-model="form.description" class="form-control" :class="{ 'is-invalid': form.errors.has('description') }" rows="3" placeholder="Enter description..."></textarea>
-                                        <has-error :form="form" field="description"></has-error>
-                                    </div>
-                                </div>
-
-                                <div class="card-footer">
-                                    <button :disabled="form.busy" type="submit" class="btn btn-primary"><i class="fas fa-arrow-circle-up"></i> Update</button>
-                                </div>
-                            </form>
+                            <div class="form-group">
+                                <label>Description</label>
+                                <textarea v-model="form.description" class="form-control" :class="{ 'is-invalid': form.errors.has('description') }" rows="3" placeholder="Enter description..."></textarea>
+                                <has-error :form="form" field="description"></has-error>
+                            </div>
                         </div>
-                    </div>
+
+                        <div class="card-footer text-right">
+                            <button :disabled="form.busy" type="submit" class="btn btn-primary"><i class="fas fa-arrow-circle-up"></i> Update</button>
+                        </div>
+                    </form>
                 </div>
             </div>
-        </section>
+        </div>
         <!-- snotify -->
         <vue-snotify></vue-snotify>
     </div>

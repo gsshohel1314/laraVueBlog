@@ -11,28 +11,24 @@
             </div>
         </div>
 
-        <section class="content">
-            <div class="container-fluid">
-                <div class="row justify-content-around">
-                    <div class="col-8">
-                        <table id="example2" class="table table-bordered table-hover showTable">
-                            <tbody>
-                                <tr>
-                                    <td scope="row">Name</td>
-                                    <td>:</td>
-                                    <td>{{ getCategoryById.name }}</td>
-                                </tr>
-                                <tr>
-                                    <td scope="row">Description</td>
-                                    <td>:</td>
-                                    <td>{{ getCategoryById.description }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+        <div class="row justify-content-center">
+            <div class="col-8">
+                <table id="example2" class="table table-bordered table-hover showTable">
+                    <tbody>
+                        <tr>
+                            <td scope="row">Name</td>
+                            <td>:</td>
+                            <td>{{ getCategoryById.name }}</td>
+                        </tr>
+                        <tr>
+                            <td scope="row">Description</td>
+                            <td>:</td>
+                            <td>{{ getCategoryById.description }}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-        </section>
+        </div>
         <!-- snotify -->
         <vue-snotify></vue-snotify>
     </div>

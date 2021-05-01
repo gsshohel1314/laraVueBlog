@@ -11,62 +11,59 @@
             </div>
         </div>
 
-        <section class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <!-- <div class="card-header">
-                                <h3 class="card-title">DataTable with minimal features & hover style</h3>
-                            </div> -->
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="card">
+                    <div class="card-body">
+                        <table id="datatable" class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col" class="text-center">Action</th>
+                                </tr>
+                            </thead>
 
-                            <div class="card-body">
-                                <table id="example2" class="table table-bordered table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Date</th>
-                                            <th scope="col" class="text-center">Action</th>
-                                        </tr>
-                                    </thead>
+                            <tbody>
+                                <tr v-for="(category, index) in getAllCategory" :key="category.id">
+                                    <td scope="row"> {{ index + 1 }} </td>
+                                    <td>{{ category.name }}</td>
+                                    <td>{{ category.created_at | timeFormate }}</td>
 
-                                    <tbody>
-                                        <tr v-for="(category, index) in getAllCategory" :key="category.id">
-                                            <td scope="row"> {{ index + 1 }} </td>
-                                            <td>{{ category.name }}</td>
-                                            <td>{{ category.created_at | timeFormate }}</td>
+                                    <td class="text-center">
+                                        <router-link :to="`/category/show/${category.id}`" type="button" class="btn btn-info btn-sm">
+                                            <i class="fas fa-eye"></i> View
+                                        </router-link>
 
-                                            <td class="text-center">
-                                                <router-link :to="`/category/show/${category.id}`" type="button" class="btn btn-info btn-sm">
-                                                    <i class="fas fa-eye"></i> View
-                                                </router-link>
+                                        <router-link :to="`/category/edit/${category.id}`" type="button" class="btn btn-primary btn-sm" @click="edit(category.id)">
+                                            <i class="fas fa-edit"></i> Edit
+                                        </router-link>
 
-                                                <router-link :to="`/category/edit/${category.id}`" type="button" class="btn btn-primary btn-sm" @click="edit(category.id)">
-                                                    <i class="fas fa-edit"></i> Edit
-                                                </router-link>
-
-                                                <button type="button" class="btn btn-danger btn-sm" @click="destroy(category.id)">
-                                                    <i class="fas fa-trash-alt"></i> Delete
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                                        <button type="button" class="btn btn-danger btn-sm" @click="destroy(category.id)">
+                                            <i class="fas fa-trash-alt"></i> Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
         <!-- snotify -->
         <vue-snotify></vue-snotify>
     </div>
 </template>
 
 <script>
+    // Datatable Modules
+    import "datatables.net-dt/js/dataTables.dataTables"
+    import "datatables.net-dt/css/jquery.dataTables.min.css"
+
     export default {
         mounted() {
+            this.table()
             this.$store.dispatch('allCategory')
         },
 
@@ -77,6 +74,13 @@
         },
 
         methods: {
+            // datatable
+            table(){
+                $(document).ready( function () {
+                    $('#datatable').DataTable();
+                } );
+            },
+
             destroy(id){
                 this.$snotify.clear()
                 this.$snotify.confirm(

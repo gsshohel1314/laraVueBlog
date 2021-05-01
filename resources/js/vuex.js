@@ -20,8 +20,8 @@ export default{
         allCategory(context){
             axios.get('/backend/category')
             .then(response => {
-                // console.log(response.data.categories)
                 context.commit('categories', response.data.categories)
+                // context.commit('categories', response.data.data)
             })
             .catch(e => {
                 console.log(e)
