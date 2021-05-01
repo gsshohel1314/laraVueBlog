@@ -7,7 +7,10 @@ import EditComponent from './components/backend/category/EditComponent';
 import ShowComponent from './components/backend/category/ShowComponent';
 
 // post
-import PostComponent from './components/backend/post/PostComponent';
+import IndexPost from './components/backend/post/IndexPost';
+import CreatePost from './components/backend/post/CreatePost';
+import EditPost from './components/backend/post/EditPost';
+import ShowPost from './components/backend/post/ShowPost';
 
 export const routes = [
     { path: '/dashboard', component: DashboardComponent },
@@ -19,5 +22,8 @@ export const routes = [
     { path: '/category/show/:id', component: ShowComponent },
 
     // post route
-    { path: '/post', component: PostComponent },
+    { path: '/post', component: IndexPost },
+    { path: '/post/create', component: CreatePost },
+    { path: '/post/edit/:id', component: EditPost },
+    { path: '/post/show/:id', component: ShowPost },
 ]

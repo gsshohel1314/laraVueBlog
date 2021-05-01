@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Backend\PostController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\DashboardController;
 
@@ -15,5 +16,8 @@ Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth'
     Route::post('category/update/{id}', [CategoryController::class, 'update']);
     Route::get('category/show/{id}', [CategoryController::class, 'show']);
     Route::get('category/{id}', [CategoryController::class, 'delete']);
+
+    // Post
+    Route::resource('post', PostController::class);
 });
 

@@ -39,10 +39,7 @@ import moment from 'moment';
 moment().format();
 
 // vue filter
-Vue.filter('timeFormate', (arg) => {
-    // return moment(arg).format('MMMM Do YYYY, h:mm:ss a');
-    return moment(arg).startOf('hour').fromNow();
-});
+import filter from './filter';
 
 // Component
 Vue.component('app-component', require('./components/layouts/backend/AppComponent.vue').default);

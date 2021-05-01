@@ -4,6 +4,7 @@ export default{
     state: {
         categories: [],
         getCategoryById: [],
+        posts: [],
     },
 
     getters: {
@@ -14,6 +15,11 @@ export default{
         getCategoryById(state){
             return state.getCategoryById
         },
+
+        // post getters
+        getPost(state){
+            return state.posts
+        }
     },
 
     actions: {
@@ -36,6 +42,17 @@ export default{
             .catch(e => {
                 console.log(e)
             })
+        },
+
+        // Post actions
+        postData(context){
+            axios.get('/backend/post')
+            .then(response => {
+                context.commit('allPost', response.data.posts)
+            })
+            .catch(e => {
+                console.log(e)
+            })
         }
     },
 
@@ -46,6 +63,11 @@ export default{
 
         getCategoryById(state, data){
             return state.getCategoryById = data
+        },
+
+        // Post
+        allPost(state, data){
+            return state.posts = data
         }
     },
 }
