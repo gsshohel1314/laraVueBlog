@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -39,7 +42,31 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // return $request;
+        $this->validate($request, [
+            'title'=>'required|string',
+            'description'=>'required|string',
+        ]);
+
+        if($request->hasFile('image')){
+            $image=$request->file('image');
+            // $userName=Str::slug($request->name);
+            $imageName= 'post' .'_'. uniqid() .'.'. $image->getClientOriginalExtension();
+
+            if(!Storage::disk('public')->exists('post')){
+                Storage::disk('public')->makeDirectory('post');
+            }
+            Image::make($image)->save(public_path('storage/post/' . $imageName));
+        }else{
+            $imageName= null;
+        }
+        Post::create([
+            'user_id' => Auth::user()->id,
+            'category_id' => $request->category_id,
+            'title' => $request->title,
+            'description' => $request->description,
+            'image' => $imageName
+        ]);
     }
 
     /**

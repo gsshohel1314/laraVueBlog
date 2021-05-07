@@ -14,12 +14,12 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card card-primary">
-                    <form @submit.prevent="store()" @keydown="form.onKeydown($event)">
+                    <form @submit.prevent="store()">
                         <div class="card-body">
                             <div class="form-group">
                                 <label>Name</label>
                                 <input v-model="form.name" type="text" name="name"
-                                class="form-control" :class="{ 'is-invalid': form.errors.has('name') }">
+                                class="form-control" :class="{ 'is-invalid': form.errors.has('name') }" placeholder="Enter name">
                                 <has-error :form="form" field="name"></has-error>
                             </div>
 
@@ -28,6 +28,7 @@
                                 <textarea v-model="form.description" class="form-control" :class="{ 'is-invalid': form.errors.has('description') }" rows="3" placeholder="Enter description..."></textarea>
                                 <has-error :form="form" field="description"></has-error>
                             </div>
+
                         </div>
 
                         <div class="card-footer text-right">

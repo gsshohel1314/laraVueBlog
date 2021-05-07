@@ -33,21 +33,21 @@
                                     <td scope="row"> {{ index + 1 }} </td>
                                     <td>{{ post.user.name }}</td>
                                     <td>{{ post.category.name }}</td>
-                                    <td>{{ post.title | shortLength(2, '...') }}</td>
+                                    <td>{{ post.title | shortLength(20, '...') }}</td>
                                     <td><img :src="post.image" alt="" width="50" height="50"></td>
                                     <td>{{ post.created_at | timeFormate }}</td>
 
                                     <td class="text-center">
                                         <router-link :to="`/post/show/${post.id}`" type="button" class="btn btn-info btn-sm">
-                                            <i class="fas fa-eye"></i> View
+                                            <i class="fas fa-eye"></i>
                                         </router-link>
 
                                         <router-link :to="`/post/edit/${post.id}`" type="button" class="btn btn-primary btn-sm" @click="edit(post.id)">
-                                            <i class="fas fa-edit"></i> Edit
+                                            <i class="fas fa-edit"></i>
                                         </router-link>
 
                                         <button type="button" class="btn btn-danger btn-sm" @click="destroy(post.id)">
-                                            <i class="fas fa-trash-alt"></i> Delete
+                                            <i class="fas fa-trash-alt"></i>
                                         </button>
                                     </td>
                                 </tr>
@@ -64,8 +64,8 @@
 
 <script>
     // Datatable Modules
-    import "datatables.net-dt/js/dataTables.dataTables"
-    import "datatables.net-dt/css/jquery.dataTables.min.css"
+    import "datatables.net-bs4/css/dataTables.bootstrap4.min.css"
+    import "datatables.net-bs4/js/dataTables.bootstrap4.min.js"
 
     export default {
         mounted() {

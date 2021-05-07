@@ -26,11 +26,13 @@
     },
     "dependencies": {
         "datatables.net-bs4": "^1.10.24",
-        "datatables.net-dt": "^1.10.24",
+        "dropify": "^0.2.2",
         "moment": "^2.29.1",
+        "select2": "^4.0.13",
         "vform": "^1.0.1",
         "vue-router": "^3.5.1",
         "vue-snotify": "^3.2.1",
+        "vue-tinymce-text-editor": "^1.6.6",
         "vuex": "^3.6.2"
     }
 }

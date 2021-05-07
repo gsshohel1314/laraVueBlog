@@ -13,7 +13,6 @@ const store = new Vuex.Store(
 
 // vform
 import { Form, HasError, AlertError } from 'vform'
-
 Vue.component(HasError.name, HasError)
 Vue.component(AlertError.name, AlertError)
 
@@ -25,13 +24,15 @@ const snotifyOptions = {
         position: SnotifyPosition.rightTop
     }
 }
-
 Vue.use(Snotify, snotifyOptions)
+
+// tinymce text editor
+import tinymce from 'vue-tinymce-text-editor'
+Vue.component('tinymce', tinymce)
 
 // vue router
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
-
 window.Form = Form
 
 // moment js
@@ -49,7 +50,8 @@ import { routes } from './routes';
 
 const router = new VueRouter({
     routes,
-    mode: 'hash',
+    // mode: 'hash',
+    mode: 'history',
 });
 
 const app = new Vue({
